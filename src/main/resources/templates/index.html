@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title></title>
+</head>
+<body>
+<div class="header">
+    <div class="inner_header">
+        <ul class="navigation">
+            <a href="/">Home</a></li>
+            <a href="/applications">Applications</a>
+            <a href="/applicants">Applicants</a>
+        </ul>
+    </div>
+</div>
+
+<div>
+<!-- #######  YAY, I AM THE SOURCE EDITOR! #########-->
+    <!-- #######  YAY, I AM THE SOURCE EDITOR! #########-->
+    <h1 style="color: #5e9ca0;">TTT Studio - Java/SpringBoot Challenge</h1>
+    <p>&nbsp;</p>
+    <h2 style="color: #2e6c80;">Access of application:</h2>
+    <p>&nbsp;</p>
+    <p><strong>Applications:</strong> List of volunteers with the position details they applied for</p>
+    <p><strong>Applicants: </strong>List of volunteers for a given job id</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <h2 style="color: #2e6c80;">Formation of Tables:</h2>
+    <p>&nbsp;</p>
+    <ol>
+        <ul style="list-style-type: disc;">
+            <li>The provided excel tables were first imported to PostgreSQL in Intellij.</li>
+            <li>Using these tables, two queries where created for the required API calls.</li>
+        </ul>
+    </ol>
+    <pre>&nbsp;</pre>
+    <ul style="list-style-type: disc;">
+        <li style="list-style-type: none;">
+            <ul style="list-style-type: disc;">
+                <li>Query for <em><strong>List of volunteers with the position details they applied for :</strong></em></li>
+            </ul>
+        </li>
+    </ul>
+    <p>&nbsp;</p>
+    <p><strong>TABLE NAME: </strong>JobApplications</p>
+    <p>&nbsp;</p>
+    <pre>SELECT public."Jobs".id AS Job_ID,<br />       public."Volunteers".first_name AS Applicant_First_Name,<br />       public."Volunteers".last_name AS Applicant_Last_Name,<br />       public."Jobs".job_name AS Job_Title,<br />       public."Jobs".job_desc AS Job_Description<br />FROM public."Applications"<br />         INNER JOIN public."Jobs" ON public."Applications".job_id = public."Jobs".id<br />         INNER JOIN public."Volunteers" ON public."Applications".volunteer_id = public."Volunteers".id;<br /><br /></pre>
+    <ul>
+        <li>Query for&nbsp;<em><strong>List of volunteers for a given job id:</strong></em></li>
+    </ul>
+    <p>&nbsp;</p>
+    <p><em><strong>TABLE NAME: </strong></em>ApplicantInfo</p>
+    <p>&nbsp;</p>
+    <pre>SELECT job_id,job_title, string_agg(CONCAT(applicant_first_name, ' ', applicant_last_name), ', ')<br />FROM "JobApplications"<br />GROUP BY job_id,job_title<br />ORDER BY job_id;<br /><br /><br /></pre>
+    <h2 style="color: #2e6c80;">Creation of JPAs:</h2>
+    <p>&nbsp;</p>
+    <ul>
+        <li>Creation of DAOs were fairly simple on Intellij as the compiler autogenerates these classes. These classes are located in <em><strong>src/main/java/com.example.ttt_codingchallenge/model.jpa</strong></em></li>
+    </ul>
+    <p>&nbsp;</p>
+    <h2 style="color: #2e6c80;">Creation of Database Connection Settings:</h2>
+    <p>&nbsp;</p>
+    <ul>
+        <li>Database connection is established in the <strong>ProdHibernateUtil.java</strong> class under <em><strong>src/main/java/com.example.ttt_codingchallenge/</strong></em></li>
+        <li>An<em><strong>&nbsp;DbConnection&nbsp;</strong></em>interface is added so that the DB connection settings can implement the SessionFactory method. (This will later then be Autowired in the DAO classes)</li>
+        <li>After adding the database settings, JPA calsses were added to the&nbsp;<strong>AnnotatedClass</strong> (<em>Line 37 and 38)</em></li>
+    </ul>
+    <p>&nbsp;</p>
+    <h2 style="color: #2e6c80;">Creation of DAOs:</h2>
+    <p>&nbsp;</p>
+    <ul>
+        <li>2 DAO classes where used inorder to fetch two distinct datas</li>
+        <li>Using the dbConnection that was set, each DAO called the tables from the query above with a simple <strong>SELECT *.</strong></li>
+        <li>Each of the data is then mapped to the JPA variables and a list of query results are returned.</li>
+    </ul>
+    <p>&nbsp;</p>
+    <h2 style="color: #2e6c80;">Creation of Application Controller:</h2>
+    <p>&nbsp;</p>
+    <ul>
+        <li>The ApplicationController.java class then calls the DAO methods in order to map each of the query result to the variables that were enerated in the JPA classes.</li>
+        <li>This list is then added to the model hashmap and a String is returned that will then be called in the front end to display the values</li>
+    </ul>
+    <p>&nbsp;</p>
+    <h2 style="color: #2e6c80;">Front-end:</h2>
+    <p>&nbsp;</p>
+    <h3>Table Pagination:</h3>
+    <p>&nbsp;</p>
+    <p>Table pagination was achieved by downloaded jquery packages . These packages are noted on line 6 and 7 of the .html files.</p>
+    <p>&nbsp;</p>
+    <p>The styles were also a jquery package that was used. This was called in line 5.</p>
+    <p>&nbsp;</p>
+    <h3>CSS Classes:</h3>
+    <p>&nbsp;</p>
+    <p>Styling CSS classes were created under resources/static.css</p>
+    <ul>
+        <li>tableStyle.css uses a odd/even row color change in order to differentiate each row</li>
+    </ul>
+    <p>&nbsp;</p>
+</div>
+</body>
+</html>

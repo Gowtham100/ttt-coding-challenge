@@ -1,0 +1,27 @@
+table, th, td {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #adadad;
+}
+
+thead tr {
+    background-color: #ff8686;
+}
+
+.table-responsive {height:50px;}
+
+#data tr {
+    display: flow;
+}
+
+
+

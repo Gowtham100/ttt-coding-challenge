@@ -1,0 +1,45 @@
+<meta charset="ISO-8859-1">
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $("#myTable").DataTable();
+        });
+    </script>
+    <title>Applications</title>
+</head>
+<div class="header">
+    <div class="inner_header">
+        <ul class="navigation">
+            <a href="/">Home</a></li>
+            <a href="/applications">Applications</a>
+            <a href="/applicants">Applicants</a>
+        </ul>
+    </div>
+</div>
+<table id="myTable" class="display">
+    <thead>
+    <tr class="tableStyle">
+        <th width="20px"><b> JOB ID</b></th>
+        <th width="40px"><b>FIRST NAME</b> </th>
+        <th width="40px"><b>LAST NAME</b> </th>
+        <th width="40px"><b>JOB NAME</b> </th>
+        <th width="80px"><b>JOB DESCRIPTION</b> </th>
+    </tr>
+    </thead>
+    <tbody >
+    <tr th:each="jobApplication, iStat : ${applications}" >
+
+        <td width="20px" th:text="${jobApplication.job_id}"/>
+        <td width="40px" th:text="${jobApplication.applicant_first_name}"/>
+        <td width="40px" th:text="${jobApplication.applicant_last_name}"/>
+        <td width="40px" th:text="${jobApplication.job_title}"/>
+        <td th:text="${jobApplication.job_desc}"/>
+
+    </tbody>
+</table>
+

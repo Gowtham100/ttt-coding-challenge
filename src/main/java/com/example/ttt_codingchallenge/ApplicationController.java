@@ -2,8 +2,10 @@ package com.example.ttt_codingchallenge;
 
 import com.example.ttt_codingchallenge.DAO.JobApplicantsDAO;
 import com.example.ttt_codingchallenge.DAO.JobApplicationsDAO;
+import com.example.ttt_codingchallenge.model.jpa.ApplicantInfo;
 import com.example.ttt_codingchallenge.model.jpa.JobApplications;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -36,7 +38,7 @@ public class ApplicationController {
     }
     @RequestMapping("/applicants")
     public String applicants(Map<String, Object> model) {
-        List<JobApplications> jobApplicants = jobApplicantsDAO.getJobApplicant();
+        List<ApplicantInfo> jobApplicants = jobApplicantsDAO.getJobApplicant();
         model.put("applicants", jobApplicants);
 
         return "applicants";

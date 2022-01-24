@@ -34,7 +34,7 @@ public class JobApplicantsDAO {
      * Query is ran using the PostgreSQL database
      * @return List of JobApplications that is then mapped
      */
-    public List<JobApplications> getJobApplicant() {
+    public List<ApplicantInfo> getJobApplicant() {
         try (Session session = dbConnection.getSessionFactory().openSession()) {
             Query query = session.createNativeQuery(VOLUNTEERINFOSQL, ApplicantInfo.class);
 

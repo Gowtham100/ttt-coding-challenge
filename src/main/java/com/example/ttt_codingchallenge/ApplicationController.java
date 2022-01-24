@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Main controller class
+ */
 @Controller
 public class ApplicationController {
 
@@ -19,6 +22,11 @@ public class ApplicationController {
     @Autowired
     private JobApplicantsDAO jobApplicantsDAO;
 
+    /**
+     * This method maps the Job Applications that ware called from the DAO methods
+     * @param model Used to map the string which is used to call in the front end to the DAO List
+     * @return
+     */
     @RequestMapping("/applications")
     public String application(Map<String, Object> model) {
         List<JobApplications> jobApplication = jobApplicationsDAO.getJobApplications();

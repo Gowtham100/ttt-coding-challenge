@@ -52,7 +52,7 @@
     <p>&nbsp;</p>
     <p><em><strong>TABLE NAME: </strong></em>ApplicantInfo</p>
     <p>&nbsp;</p>
-    <pre>SELECT job_id,job_title, string_agg(CONCAT(applicant_first_name, ' ', applicant_last_name), ', ')<br />FROM "JobApplications"<br />GROUP BY job_id,job_title<br />ORDER BY job_id;<br /><br /><br /></pre>
+    <pre>SELECT job_id,job_title, string_agg(CONCAT(applicant_first_name, ' ', applicant_last_name), ', ')<br />FROM Applications<br />JOIN (<br />SELECT Jobs.id, Volunteers.first_name, Volunteers.last_name, Jobs.job_name, Jobs.job_desc <br />from Applications<br />INNER JOIN Jobs ON Applications.job_id = Jobs.id<br />INNER JOIN Volunteers ON Applications.volunteer_id = Volunteers.id<br />WHERE Jobs.id = Applications.job_id;<br />)<br />GROUP BY job_id,job_title<br />ORDER BY job_id;<br /><br /><br /></pre>
     <h2 style="color: #2e6c80;">Creation of JPAs:</h2>
     <p>&nbsp;</p>
     <ul>

@@ -10,7 +10,8 @@ import javax.persistence.Table;
 public class JobApplications {
 
   @Id
-  public long id;
+ public long id;
+
 
   @Column(name="job_id")
   public long job_id;

@@ -1,7 +1,5 @@
 package com.example.ttt_codingchallenge;
 
-import java.util.Properties;
-
 import com.example.ttt_codingchallenge.model.jpa.ApplicantInfo;
 import com.example.ttt_codingchallenge.model.jpa.JobApplications;
 import org.hibernate.SessionFactory;
@@ -9,22 +7,12 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Service;
 
-/**
- * DBConnection interface is implemented in order to set the configurations for the SessionFactory
-  */
-@Service
-@Profile("prod")
-public class ProdHibernateUtil implements DbConnection {
+import java.util.Properties;
 
+public class FalseTestDbConnection implements  DbConnection{
     private SessionFactory sessionFactory;
 
-    /**
-     * This method sets and gets the right session factory to connect to the database
-     * @return sessionFactory with the right configurations to connect to the PostgreSQL DB
-     */
     @Override
     public SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
@@ -35,8 +23,8 @@ public class ProdHibernateUtil implements DbConnection {
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "org.postgresql.Driver");
                 settings.put(Environment.URL, "jdbc:postgresql://localhost:5432/CTCJobPosting");
-                settings.put(Environment.USER, "postgres");
-                settings.put(Environment.PASS, "Password123");
+                settings.put(Environment.USER, "testFalseConnection");
+                settings.put(Environment.PASS, "");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQL82Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
 

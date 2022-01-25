@@ -24,6 +24,10 @@ This is located under **resources/**
 - All table values have a value and is not NULL
 
 ### Things that could have been improved upon
+Due to contracting COVID the week became a little tought for me so I could not sough out to achieve all the elements I wanted to.
+
+Towards the end I had issues connecting to my DbConnection in my Junit test and that would have been definitely something I could have done so if I had a little bit more time.
+
 If I had more time I would have done the following improvements:
 - More thorough JUnit tests
 - A neater front-end
